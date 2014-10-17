@@ -24,9 +24,11 @@ public class Password
 		String [] specialChars = {"_", "-", "$", "%", "/", "+", "#", "(", ")"};
 		String [][] chars = {upperChars, lowerChars, specialChars};
 		this.text = "";
-		for(int i = 0; i < this.length; i++) {
+		while(text.length() < this.length) {
 			Random random = new Random();
 			int randomCategory = random.nextInt(chars.length);
+			if((randomCategory == 0 && !this.upperCaseChars) || (randomCategory == 1 && !this.lowerCaseChars) || (randomCategory == 2 && !this.specialChars))
+				continue;
 			random = new Random();
 			int randomChar = random.nextInt(chars[randomCategory].length);
 			this.text += chars[randomCategory][randomChar];
