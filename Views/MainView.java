@@ -25,6 +25,7 @@ public class MainView extends JFrame
 		this.setSize(380, 130);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		
 		this.layout = new SpringLayout();
 		this.contentPane = this.getContentPane();
@@ -34,7 +35,7 @@ public class MainView extends JFrame
 		this.lowerCaseCharsCheckbox = new JCheckBox("Kleinbuchstaben", true);
 		this.specialCharsCheckbox = new JCheckBox("Sonderzeichen");
 		
-		this.lengthTextField = new JTextField("8", 8);
+		this.lengthTextField = new JTextField("8", 5);
 		this.lengthLabel = new JLabel("LŠnge");
 		
 		this.password = new JTextField(20);
