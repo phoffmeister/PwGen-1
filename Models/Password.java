@@ -1,18 +1,39 @@
 package Models;
 
+import java.util.Random;
+
 public class Password 
 {
-	String text;
-	int length;
-	boolean upperCaseChars;
-	boolean lowerCaseChars;
-	boolean specialChars;
+	private String text;
+	private int length;
+	private boolean upperCaseChars;
+	private boolean lowerCaseChars;
+	private boolean specialChars;
 	
 	public Password(int l, boolean ucc, boolean lcs, boolean sc) {
-		this.text = "";
 		this.length = l;
 		this.upperCaseChars = ucc;
 		this.lowerCaseChars = lcs;
 		this.specialChars = sc;
+		this.generate();
+	}
+	
+	private void generate() {
+		String [] upperChars = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+		String [] lowerChars = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+		String [] specialChars = {"_", "-", "$", "%", "/", "+", "#", "(", ")"};
+		String [][] chars = {upperChars, lowerChars, specialChars};
+		this.text = "";
+		for(int i = 0; i < this.length; i++) {
+			Random random = new Random();
+			int randomCategory = random.nextInt(chars.length);
+			random = new Random();
+			int randomChar = random.nextInt(chars[randomCategory].length);
+			this.text += chars[randomCategory][randomChar];
+		}
+	}
+	
+	public String getText() {
+		return this.text;
 	}
 }

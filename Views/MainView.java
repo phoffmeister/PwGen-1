@@ -11,20 +11,21 @@ import javax.swing.SpringLayout;
 
 public class MainView extends JFrame 
 {
-	SpringLayout layout;
-	Container contentPane;
-	Component upperCaseCharsCheckbox;
-	Component lowerCaseCharsCheckbox;
-	Component specialCharsCheckbox;
-	Component lengthTextField;
-	Component lengthLabel;
-	Component password;
-	Component go;
+	private SpringLayout layout;
+	private Container contentPane;
+	public JCheckBox upperCaseCharsCheckbox;
+	public JCheckBox lowerCaseCharsCheckbox;
+	public JCheckBox specialCharsCheckbox;
+	public JTextField lengthTextField;
+	private JLabel lengthLabel;
+	public JTextField password;
+	public JButton go;
 	
 	public MainView() {
 		super("PwGen");
 		this.setSize(380, 100);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 		
 		this.layout = new SpringLayout();
 		this.contentPane = this.getContentPane();
@@ -68,7 +69,7 @@ public class MainView extends JFrame
 	    this.layout.putConstraint(SpringLayout.WEST, this.password, 12, SpringLayout.WEST, this.contentPane);
 	    this.layout.putConstraint(SpringLayout.NORTH, this.password, 66, SpringLayout.WEST, this.contentPane);
 	    
-	    this.layout.putConstraint(SpringLayout.WEST, this.go, 288, SpringLayout.WEST, this.contentPane);
+	    this.layout.putConstraint(SpringLayout.WEST, this.go, 285, SpringLayout.WEST, this.contentPane);
 	    this.layout.putConstraint(SpringLayout.NORTH, this.go, 62, SpringLayout.WEST, this.contentPane);
 
 		this.setVisible(true);
