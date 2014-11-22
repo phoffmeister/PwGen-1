@@ -14,6 +14,7 @@ public class MainView extends JFrame
 	private Container contentPane;
 	public JCheckBox upperCaseCharsCheckbox;
 	public JCheckBox lowerCaseCharsCheckbox;
+	public JCheckBox numbersCheckbox;
 	public JCheckBox specialCharsCheckbox;
 	public JTextField lengthTextField;
 	private JLabel lengthLabel;
@@ -22,7 +23,7 @@ public class MainView extends JFrame
 	
 	public MainView() {
 		super("PwGen");
-		this.setSize(380, 130);
+		this.setSize(380, 150);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
@@ -33,16 +34,18 @@ public class MainView extends JFrame
 		
 		this.upperCaseCharsCheckbox = new JCheckBox("Gro§Ÿbuchstaben", true);
 		this.lowerCaseCharsCheckbox = new JCheckBox("Kleinbuchstaben", true);
+		this.numbersCheckbox = new JCheckBox("Zahlen", true);
 		this.specialCharsCheckbox = new JCheckBox("Sonderzeichen");
 		
 		this.lengthTextField = new JTextField("8", 5);
 		this.lengthLabel = new JLabel("LŠnge");
 		
-		this.password = new JTextField(20);
+		this.password = new JTextField(28);
 		this.go = new JButton("Los");
 		
 		this.contentPane.add(this.upperCaseCharsCheckbox);
 		this.contentPane.add(this.lowerCaseCharsCheckbox);
+		this.contentPane.add(this.numbersCheckbox);
 		this.contentPane.add(this.specialCharsCheckbox);
 		this.contentPane.add(this.lengthLabel);
 		this.contentPane.add(this.lengthTextField);
@@ -55,20 +58,23 @@ public class MainView extends JFrame
 	    this.layout.putConstraint(SpringLayout.WEST, this.lowerCaseCharsCheckbox, 200, SpringLayout.WEST, this.contentPane);
 	    this.layout.putConstraint(SpringLayout.NORTH, this.lowerCaseCharsCheckbox, 5, SpringLayout.WEST, this.contentPane);
 	    
-	    this.layout.putConstraint(SpringLayout.WEST, this.specialCharsCheckbox, 10, SpringLayout.WEST, this.contentPane);
+	    this.layout.putConstraint(SpringLayout.WEST, this.numbersCheckbox, 10, SpringLayout.WEST, this.contentPane);
+	    this.layout.putConstraint(SpringLayout.NORTH, this.numbersCheckbox, 30, SpringLayout.WEST, this.contentPane);
+	    
+	    this.layout.putConstraint(SpringLayout.WEST, this.specialCharsCheckbox, 200, SpringLayout.WEST, this.contentPane);
 	    this.layout.putConstraint(SpringLayout.NORTH, this.specialCharsCheckbox, 30, SpringLayout.WEST, this.contentPane);
 	    
-	    this.layout.putConstraint(SpringLayout.WEST, this.lengthLabel, 205, SpringLayout.WEST, this.contentPane);
-	    this.layout.putConstraint(SpringLayout.NORTH, this.lengthLabel, 34, SpringLayout.WEST, this.contentPane);
+	    this.layout.putConstraint(SpringLayout.WEST, this.lengthLabel, 18, SpringLayout.WEST, this.contentPane);
+	    this.layout.putConstraint(SpringLayout.NORTH, this.lengthLabel, 62, SpringLayout.WEST, this.contentPane);
 	    
-	    this.layout.putConstraint(SpringLayout.WEST, this.lengthTextField, 253, SpringLayout.WEST, this.contentPane);
-	    this.layout.putConstraint(SpringLayout.NORTH, this.lengthTextField, 29, SpringLayout.WEST, this.contentPane);
+	    this.layout.putConstraint(SpringLayout.WEST, this.lengthTextField, 60, SpringLayout.WEST, this.contentPane);
+	    this.layout.putConstraint(SpringLayout.NORTH, this.lengthTextField, 57, SpringLayout.WEST, this.contentPane);
+	    
+	    this.layout.putConstraint(SpringLayout.WEST, this.go, 235, SpringLayout.WEST, this.contentPane);
+	    this.layout.putConstraint(SpringLayout.NORTH, this.go, 57, SpringLayout.WEST, this.contentPane);
 	    
 	    this.layout.putConstraint(SpringLayout.WEST, this.password, 12, SpringLayout.WEST, this.contentPane);
-	    this.layout.putConstraint(SpringLayout.NORTH, this.password, 66, SpringLayout.WEST, this.contentPane);
-	    
-	    this.layout.putConstraint(SpringLayout.WEST, this.go, 285, SpringLayout.WEST, this.contentPane);
-	    this.layout.putConstraint(SpringLayout.NORTH, this.go, 67, SpringLayout.WEST, this.contentPane);
+	    this.layout.putConstraint(SpringLayout.NORTH, this.password, 90, SpringLayout.WEST, this.contentPane);
 
 		this.setVisible(true);
 	}

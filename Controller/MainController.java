@@ -23,12 +23,13 @@ public class MainController implements ActionListener, KeyListener
 	    int length = Integer.valueOf(this.view.lengthTextField.getText());
 	    boolean upperCaseChars = this.view.upperCaseCharsCheckbox.isSelected();
 	    boolean lowerCaseChars = this.view.lowerCaseCharsCheckbox.isSelected();
+	    boolean numbers = this.view.numbersCheckbox.isSelected();
 	    boolean specialChars = this.view.specialCharsCheckbox.isSelected();
-		this.password = new Password(length, upperCaseChars, lowerCaseChars, specialChars);
+		this.password = new Password(length, upperCaseChars, lowerCaseChars, numbers, specialChars);
 		if(this.password.valid())
 			this.view.password.setText(this.password.getText());
 		else
-			new ErrorMessageController(this.password.errors.get(0));
+			new ErrorMessageController(this.password.getErrors().get(0));
 	}
 	
 	public void formatLength() {
