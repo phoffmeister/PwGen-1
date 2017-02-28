@@ -3,7 +3,7 @@ package Models;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Password 
+public class Password
 {
 	private String text;
 	private int length;
@@ -12,8 +12,10 @@ public class Password
 	private boolean numbers;
 	private boolean specialChars;
 	private ArrayList<String> errors;
-	
-	public Password(int l, boolean ucc, boolean lcs, boolean n, boolean sc) {
+	private String exclude;
+
+	public Password(int l, boolean ucc, boolean lcs, boolean n, boolean sc, String excl) {
+		this.exclude = excl;
 		this.length = l;
 		this.upperCaseChars = ucc;
 		this.lowerCaseChars = lcs;
@@ -21,7 +23,7 @@ public class Password
 		this.specialChars = sc;
 		this.generate();
 	}
-	
+
 	private void generate() {
 		if(this.valid()) {
 			String [] upperChars = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
@@ -30,32 +32,34 @@ public class Password
 			String [] specialChars = {"_", "-", "$", "%", "/", "+", "#", "(", ")"};
 			String [][] chars = {upperChars, lowerChars, numbers, specialChars};
 			this.text = "";
+			Random random = new Random();
 			while(text.length() < this.length) {
-				Random random = new Random();
 				int randomCategory = random.nextInt(chars.length);
 				if((randomCategory == 0 && !this.upperCaseChars) || (randomCategory == 1 && !this.lowerCaseChars) || (randomCategory == 2 && !this.numbers) || (randomCategory == 3 && !this.specialChars))
 					continue;
-				random = new Random();
-				int randomChar = random.nextInt(chars[randomCategory].length);
-				this.text += chars[randomCategory][randomChar];
+				String randomChar = "";
+				do{
+					randomChar = chars[randomCategory][random.nextInt(chars[randomCategory].length)];
+				}while (this.exclude.contains(randomChar));
+				this.text += randomChar;
 			}
 		}
 	}
-	
+
 	public String getText() {
 		return this.text;
 	}
-	
+
 	public ArrayList<String> getErrors() {
 		return this.errors;
 	}
-	
+
 	public boolean valid() {
 		this.errors = new ArrayList<String>();
 		if(!this.upperCaseChars && !this.lowerCaseChars && !this.numbers && !this.specialChars)
-			this.errors.add("Mindestens eine Zeichenkategorie muss ausgewählt werden");
+			this.errors.add("Mindestens eine Zeichenkategorie muss ausgew√§hlt werden");
 		if(this.length < 1)
-			this.errors.add("Die angegebene Länge ist ungültig");
+			this.errors.add("Die angegebene L√§nge ist ung√ºltig");
 		return this.errors.size() < 1;
 	}
 }
